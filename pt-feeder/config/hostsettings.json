@@ -1,0 +1,29 @@
+{
+  "Host": {
+    "ProfitTrailerFolder1": "", // add your in one or more PT folders below, where ths application.properties file is. Note that windows users must add \\ in between the folders, NOT \
+    "ProfitTrailerApiEndPoint1": "", // this is where the api is to be found from PT to save your settings. For example, http://localhost:8081
+    "ProfitTrailerServerApiToken1": "",
+    "HostName": "", // the name that is used on telegram messages and the name of the config in PT.
+    "LicenseKey": "", // License key for PT Feeder
+    "CalculateTrailingValues": "false", // whether PT Feeder should calculate the trading values for you
+    "TelegramBotId": "", // telegram bot id
+    "TelegramChatId": "", // telegram chat id,
+    "DiscordBotToken": "", // discord bot token
+    "DiscordChatName": "", // discord channel name,
+    "PluginsFolder": "\\Plugins"
+  },
+
+  "Email": {
+    "ImapServer": "imap.gmail.com",
+    "ImapPort": "993",
+    "ImapUsername": "",
+    "ImapPassword": "",
+    "FromAddress": "noreply@tradingview.com", // this is the only from address that PTF will act on
+    "Subject": "TradingView Alert" // this is what should be contained in the subject line for PTF to act on the email
+  },
+
+ 
+  "Serilog": {
+    "MinimumLevel": "Information" // Can be Information or Debug depending how much logging you want
+  }
+}

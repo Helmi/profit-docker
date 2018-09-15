@@ -1,0 +1,13 @@
+#
+# RENAME THIS FILE TO .GITIGNORE
+#
+
+acme/
+profit-trailer/data/
+profit-trailer/logs/
+pt-feeder/database/
+pt-feeder/logs/
+pt-notifications/orders.db 
+pt-tracker/pttracker.db
+pt-tracker/pttracker.db-journal
+pt-tracker/PtTracker.log

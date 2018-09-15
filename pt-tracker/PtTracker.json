@@ -1,0 +1,21 @@
+{
+  "General": {
+    "BotName": "",
+    "Port": 3000,
+    "FiatCurrency": "USD",
+    "SslEnabled": "false",
+    "LogLevel": "info",
+    "PtDataSyncSecs": 15,
+    "ConfigSyncSecs": 5,
+    "TimeFormat": 24
+  },
+  "ProfitTrailer": {
+    "WebUrl": "http://profit-trailer:8081",
+    "ServerApiToken": "abc123",
+    "License": "abc123",
+    "Exchange": "BINANCE"
+  },
+  "Transfers": {
+    "12/31/2017": 0.01
+  }
+}
