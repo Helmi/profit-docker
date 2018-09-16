@@ -1,0 +1,113 @@
+
+version: "3"
+
+networks:
+  proxynet:
+    driver: overlay
+  webgateway:
+    external: true
+
+services:
+
+  profit-trailer:
+    image: helmi74/pd-profit-trailer:latest
+    restart: always
+    networks:
+      - proxynet
+    ports:
+      - 8081
+    volumes:
+      - ./profit-trailer/application.properties:/profit-trailer/application.properties
+      - ./profit-trailer/data:/profit-trailer/data
+      - ./profit-trailer/logs:/profit-trailer/logs
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=${COMPOSE_PROJECT_NAME}_proxynet" # you need to change pd_ to something else if you use a different stack name when starting
+      - "traefik.port=8081"
+      - "traefik.backend=profit-trailer"
+      - "traefik.backend.loadbalancer.method=drr"
+      - "traefik.frontend.rule=Host:bot1.exampledomain.com" # change this to your hostname. That hostname needs to point to your server
+      - "traefik.domain=bot1.exampledomain.com" # change this to your hostname. That hostname needs to point to your server
+
+  pt-feeder:
+    image: helmi74/pd-pt-feeder-beta:latest
+    restart: always
+    networks:
+      - proxynet
+    volumes:
+      - ./profit-trailer/application.properties:/profit-trailer/application.properties
+      - ./pt-feeder/config:/pt-feeder/config
+      - ./pt-feeder/database:/pt-feeder/database
+      - ./pt-feeder/logs:/pt-feeder/logs
+    depends_on:
+      - profit-trailer
+
+  pt-tracker:
+    image: helmi74/pd-pt-tracker:latest
+    restart: always
+    networks:
+      - proxynet
+    ports:
+      - 3000
+    volumes:
+      - ./pt-tracker/PtTracker.json:/pt-tracker/PtTracker.json
+      - ./pt-tracker/pttracker.db:/pt-tracker/pttracker.db
+      - ./pt-tracker/pttracker.db-journal:/pt-tracker/pttracker.db-journal
+      - ./pt-tracker/PtTracker.log:/pt-tracker/PtTracker.log
+    depends_on:
+      - profit-trailer
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=${COMPOSE_PROJECT_NAME}_proxynet" # you need to change pd_ to something else if you use a different stack name when starting
+      - "traefik.port=3000"
+      - "traefik.backend=pt-tracker"
+      - "traefik.backend.loadbalancer.method=drr"
+      - "traefik.frontend.rule=Host:bot1t.exampledomain.com" # change this to your hostname. That hostname needs to point to your server
+      - "traefik.domain=bot1t.exampledomain.com" # change this to your hostname. That hostname needs to point to your server
+
+  pt-notifications:
+    image: helmi74/pd-pt-notifications:latest
+    restart: always
+    networks:
+      - proxynet
+    volumes:
+      - ./pt-notifications/settings.properties:/pt-notifications/settings.properties
+      - ./pt-notifications/database/orders.db:/pt-notifications/orders.db
+      - ./pt-notifications/logs:/pt-notifications/logs
+    depends_on:
+      - profit-trailer
+
+  loadbalancer:
+    image: traefik
+    restart: always
+    command:
+      - "--loglevel=WARN"
+      - "--api"
+      # - "--entrypoints=Name:http Address::80"
+      - "--entrypoints=Name:http Address::80 Redirect.EntryPoint:https"
+      - "--entrypoints=Name:https Address::443 TLS"
+      - "--defaultentrypoints=http,https"
+      - "--acme"
+      - "--acme.storage=/etc/acme/acme.json"
+      - "--acme.entryPoint=https"
+      - "--acme.onHostRule=true"
+      - "--acme.httpChallenge"
+      - "--acme.httpChallenge.entryPoint=http"
+      - "--acme.email=my@exampledomain.com"
+      ## comment out the next line to request a real certificate
+      # - "--acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory" # uncomment this line if you want to test the lets encrypt certificate generation
+      - "--docker"
+      - "--docker.exposedByDefault=false"
+      - "--docker.endpoint=unix:///var/run/docker.sock"
+      - "--docker.watch"
+    ports:
+      - 80:80
+      - 443:443
+      - 9090:8080
+    volumes:
+      - ./acme/:/etc/acme/
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - proxynet
+      - webgateway
+
