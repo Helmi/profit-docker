@@ -90,6 +90,13 @@ The RENAME.gitignore file contains a set of files to better ignore if you want t
 
 As the files ignore in that file are already added to the repo you need to remove them to have them ignore from now on:
 
+First edit your git information
+
+```
+git config --global user.name "FIRST_NAME LAST_NAME"
+git config --global user.email "MY_NAME@example.com"
+```
+
 ```
 git rm -r --cached .            # remove all files from git repo
 git add .                       # all all files back, ignoring the ones in .gitignore
