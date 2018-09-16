@@ -1,6 +1,6 @@
 ## Main Repository for the Profit-Docker project
 
-This project aims to be a template for a Docker Compose Stack to run a full stack Profit-Trailer instance including important Addons.
+This project aims to be a template for a Docker Compose Stack to run a full stack Profit-Trailer instance including important Addons and including automatic Reverse-Proxy setup including an automatic SSL setup with a free Letsencrypt certificate.
 
 ### What is Profit-Trailer?
 
