@@ -3,7 +3,7 @@ version: "3"
 
 networks:
   proxynet:
-    driver: overlay
+    driver: bridge
   webgateway:
     external: true
 

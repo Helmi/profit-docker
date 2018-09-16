@@ -37,6 +37,7 @@ curl -fsSL get.docker.com -o get-docker.sh
 sh get-docker.sh
 apt update && apt upgrade -y
 apt install docker-compose -y
+apt autoremove -y
 docker network create webgateway
 ```
 
