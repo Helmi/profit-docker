@@ -21,6 +21,7 @@ This project is completely Work in progress and widely untested. Use at your own
 __Known limitiations/issues:__
 
 - Only one PT-Stack per VPS
+- PT-Notifications doesn't currently work
 
 Feel free to post issues to this repository and I'll be glad to help fixing them.
 
