@@ -111,7 +111,13 @@ git remote -v
 git remote rm origin
 ```
 
-Add back your new destination:
+Sidenote: If you want your server to remember your github (or any other service's) credentials use this command:
+
+```
+git config --global credential.helper cache
+```
+
+Now you can push the settings to your private repo
 
 ```
 git remote add destination https://github.com/your/repo/url.git
