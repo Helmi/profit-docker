@@ -8,6 +8,7 @@ profit-trailer/logs/
 pt-feeder/database/
 pt-feeder/logs/
 pt-notifications/orders.db 
+pt-notifications/logs
 pt-tracker/pttracker.db
 pt-tracker/pttracker.db-journal
 pt-tracker/PtTracker.log
