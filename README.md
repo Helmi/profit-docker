@@ -35,10 +35,12 @@ Install docker on an empty Linux VPS (only tested with Ubuntu 18.04 so far)
 curl -fsSL get.docker.com -o get-docker.sh
 sh get-docker.sh
 apt update && apt upgrade -y
-apt install docker-compose -y
 apt autoremove -y
 docker network create webgateway
 ```
+
+Install docker compose manually (do not use the one from the ubuntu repository). Follow the instructions [here](https://docs.docker.com/compose/install/#install-compose)
+
 
 ### Clone repository
 
