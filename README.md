@@ -22,6 +22,7 @@ __Known limitiations/issues:__
 
 - Only one PT-Stack per VPS
 - PT-Notifications doesn't currently work
+- You need to re-login to Profit-Trailer every time you restart the container or server as Sessions will be killed.
 
 Feel free to post issues to this repository and I'll be glad to help fixing them.
 
