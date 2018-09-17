@@ -13,10 +13,15 @@ Currently these Addons are included and supported:
 - PT-Feeder (Market Trend / Config Automation)
 - PT-Tracker (simple, local statistics tool)
 - PT-Notifcations (Telegram/Discord Notifications for PT)
+- PT-Defender (Bag-Busting Tool -> [Website](https://www.ptdefender.com/r/helmi)
+
+### Can I only use some of the addons?
+
+Sure, just open the `docker-compose.yml` file in your editor and comment out the "block" of the addon you don't want to use similar to how PT-Defender is commented out by default. 
 
 ### What's the state of the Profit-Docker project?
 
-This project is completely Work in progress and widely untested. Use at your own risk. More information and detailed instructions will follow later. So far only use as long as you know what you're doing.
+This project is Work in progress and widely untested. Use at your own risk. More information and detailed instructions will follow later. So far only use as long as you know what you're doing.
 
 __Known limitiations/issues:__
 
@@ -125,3 +130,9 @@ git push destination master
 ```
 
 If you're familiar enough: Of course you can use whatever other name instead of `destination` and of course you also don't need to push to your `master` branch
+
+### Thanks to
+
+- Elroy for Profit-Trailer
+- Mehtdaone for PT-Feeder
+- [But4ler](https://github.com/But4ler/docker-ptdefender) for the inspiration and ideas for the PT-Defender Dockerfile 

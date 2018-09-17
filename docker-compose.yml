@@ -77,6 +77,27 @@ services:
     depends_on:
       - profit-trailer
 
+  # pt-defender:
+  #   image: helmi74/pd-pt-defender:latest
+  #   volumes:
+  #     - ./pt-defender:/headless/.config/PTDefender
+  #     - ./profit-trailer:/mnt/profit-trailer
+  #   ports:
+  #     - 6901
+  #   restart: always
+  #   networks:
+  #     - proxynet
+  #   environment:
+  #     - "VNC_PW=ENTERYOURPASSWORDHERE"
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.docker.network=${COMPOSE_PROJECT_NAME}_proxynet" # you need to change pd_ to something else if you use a different stack name when starting
+  #     - "traefik.port=6901"
+  #     - "traefik.backend=pt-defender"
+  #     - "traefik.backend.loadbalancer.method=drr"
+  #     - "traefik.frontend.rule=Host:bot1d.exampledomain.com" # change this to your hostname. That hostname needs to point to your server
+  #     - "traefik.domain=bot1d.exampledomain.com" # change this to your hostname. That hostname needs to point to your server
+
   loadbalancer:
     image: traefik
     restart: always
