@@ -125,3 +125,17 @@ git push destination master
 ```
 
 If you're familiar enough: Of course you can use whatever other name instead of `destination` and of course you also don't need to push to your `master` branch
+
+### Update any of the packages
+
+Currently the packages need to be updated by me first, as the docker images are hosted on docker hub to be readily available at any time and you don't need to build them yourself. I'm working on a way to automatically make them ready as soon as a new build is out.
+
+So if you know the latest version is available you could for example for profit-trailer use the following chain of commands to update:
+
+```
+docker pull helmi74/pd-profit-trailer:latest && docker-compose down && docker-compose up -d
+```
+
+This pulls the latest profit-trailer image for PD and restarts the stack. All done.
+
+Check the availability of the image versions on the tags page on Docker Hub. Example for Profit-Trailer: https://hub.docker.com/r/helmi74/pd-profit-trailer/tags/
