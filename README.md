@@ -131,13 +131,13 @@ git push destination master
 
 If you're familiar enough: Of course you can use whatever other name instead of `destination` and of course you also don't need to push to your `master` branch
 
-<<<<<<< HEAD
 ### Thanks to
 
 - Elroy for Profit-Trailer
-- Mehtdaone for PT-Feeder
+- Methadone for PT-Feeder
+- The PTD Team for PT-Defender
 - [But4ler](https://github.com/But4ler/docker-ptdefender) for the inspiration and ideas for the PT-Defender Dockerfile 
-=======
+
 ### Update any of the packages
 
 Currently the packages need to be updated by me first, as the docker images are hosted on docker hub to be readily available at any time and you don't need to build them yourself. I'm working on a way to automatically make them ready as soon as a new build is out.
@@ -150,5 +150,10 @@ docker pull helmi74/pd-profit-trailer:latest && docker-compose down && docker-co
 
 This pulls the latest profit-trailer image for PD and restarts the stack. All done.
 
+There's also a command that updates all images to their latest versions as long as you use them with the `:latest` tag. Here it is combined with a docker-compose down and up attached:
+
+```
+docker images |grep -v REPOSITORY|awk '{print $1}'|xargs -L1 docker pull  && docker-compose down && docker-compose up -d
+```
+
 Check the availability of the image versions on the tags page on Docker Hub. Example for Profit-Trailer: https://hub.docker.com/r/helmi74/pd-profit-trailer/tags/
->>>>>>> master
