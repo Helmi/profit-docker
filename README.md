@@ -86,6 +86,32 @@ You can leave out the `-d` option on your first start so it won't detach. You ca
 Dont' be confused by error messages on startup. Docker doesn't allow to delay the startup of single containers so the addons are complaining about Profit-Trailer being unavailable at start. It takes 20 to 30 seconds for PT to come up fully and the addons will eventually stop complaining then.
 
 
+### Special notes on PT-Defender
+
+On the time of writing of this Readme-File, PT-Defender is only available through a deskto GUI. No problem with the Profit-Docker-Stack but you need to be aware of a few things. You need to setup your own subdomain in the docker-compose.yml file as you do for some of the other services. Also the Profit-Trailer Configuration needs a special line in the application.properties. I have already added that line to the template config included in this repo so be aware that you're not supposed to change it, unless you know what you're doing:
+
+```
+# For PT-Defender - Profit Trailer doesn't care about that line
+server.hostname = profit-trailer
+```
+
+it's a line that's exclusively used to instruct PT-Defender, it's not by any means used by Profit-Trailer itself.
+
+As soon as PT-Defender is running you can reach the VNC view of the Linux desktop through your browser using
+
+```
+https://your.subdoma.in/?password=yourpassword
+```
+
+Your password needs to be set in the docker-compose.yml file where it says
+
+```
+   environment:
+     - "VNC_PW=ENTERYOURPASSWORDHERE"
+```
+
+You can find PT-Defender being installed in `/usr/local/bin` - look it up through the file explorer and doubleclick it. The settings are saved persistantly but you need to manually restart it once the container gets restarted. I'm looking for a better way to handle this on the long run.
+
 ### Use git to version your settings
 
 One reason to chose this setup for me was to have an easy way to manage my bots/settings through git. I personally do this through private repositories at Github. As these are only available to paid accounts you might choose another way (Gitlab, your own private git service, local repositories, etc.). Note that you should not push your settings to a public repo as they contain your license and API keys. You don't want the public to see those.
