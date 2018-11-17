@@ -2,6 +2,7 @@
   "General": {
     "BotName": "",
     "Port": 3000,
+    "Password": "My-PtTracker-Password",
     "FiatCurrency": "USD",
     "SslEnabled": "false",
     "LogLevel": "info",
