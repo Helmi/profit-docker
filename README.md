@@ -159,8 +159,8 @@ If you're familiar enough: Of course you can use whatever other name instead of 
 
 ### Thanks to
 
-- Elroy for Profit-Trailer
-- Methadone for PT-Feeder
+- [Elroy](https://github.com/taniman) for Profit-Trailer
+- [Mehtadone](https://github.com/mehtadone) for PT-Feeder
 - The PTD Team for PT-Defender
 - [But4ler](https://github.com/But4ler/docker-ptdefender) for the inspiration and ideas for the PT-Defender Dockerfile 
 
