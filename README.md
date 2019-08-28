@@ -37,8 +37,7 @@ Feel free to post issues to this repository and I'll be glad to help fixing them
 Install docker on an empty Linux VPS (only tested with Ubuntu 18.04 so far)
 
 ```
-curl -fsSL get.docker.com -o get-docker.sh
-sh get-docker.sh
+wget -qO- https://get.docker.com/ | sh
 apt update && apt upgrade -y
 apt autoremove -y
 docker network create webgateway
